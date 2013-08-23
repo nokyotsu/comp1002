@@ -7,9 +7,9 @@ def SumSquares(n):
       sum = sum + i ** 2
     return sum
 
-print(SumSquares(1))
-print(SumSquares(2))
-print(SumSquares(3))
-print(SumSquares(4))
-print(SumSquares(5))
-print(SumSquares(6))
+print(1, "->", SumSquares(1))
+print(2, "->", SumSquares(2))
+print(3, "->", SumSquares(3))
+print(4, "->", SumSquares(4))
+print(5, "->", SumSquares(5))
+print(6, "->", SumSquares(6))
