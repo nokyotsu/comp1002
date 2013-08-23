@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 def SumSquares(n):
     """Sum squares of numbers from 1 to n"""
     sum = 0
