@@ -2,13 +2,13 @@
 
 def InsertionSort(A):
     """Sort elements in array A"""
-    for j in range(1, len(A)):
-        x = A[j]
-        i = j
-        while 0 < i and x < A[i - 1]:
-            A[i] = A[i - 1]
-            i = i - 1
-        A[i] = x
+    for i in range(1, len(A)):
+        x = A[i]
+        j = i
+        while 0 < j and x < A[j - 1]:
+            A[j] = A[j - 1]
+            j = j - 1
+        A[j] = x
     return A
 
 A = [53, 3, 42, 82, 2, 14]
