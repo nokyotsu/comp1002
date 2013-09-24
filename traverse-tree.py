@@ -12,21 +12,21 @@ class BinTree:
         return '({0} {1} {2})'.format(self.data, self.left, self.right)
 
 def PreOrder(node, visit=[]):
-    if node is not None:
+    if isinstance(node, BinTree):
         visit.append(node.data)
         PreOrder(node.left, visit)
         PreOrder(node.right, visit)
     return visit
 
 def PostOrder(node, visit=[]):
-    if node is not None:
+    if isinstance(node, BinTree):
         PostOrder(node.left, visit)
         PostOrder(node.right, visit)
         visit.append(node.data)
     return visit
 
 def InOrder(node, visit=[]):
-    if node is not None:
+    if isinstance(node, BinTree):
         InOrder(node.left, visit)
         visit.append(node.data)
         InOrder(node.right, visit)
