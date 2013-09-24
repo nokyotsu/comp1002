@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 class BinTree:
-    left, right, data = None, None, None
+    data, left, right = None, None, None
     
     def __init__(self, data, left=None, right=None):
         self.data  = data
