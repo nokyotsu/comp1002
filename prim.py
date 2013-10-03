@@ -5,27 +5,27 @@ class Graph:
   adj_list = defaultdict(dict)
   
   def add_edge(self, u, v, c):
-    """"
+    """
       Add an undirected edge between `u` and `v` with cost `c`
-    """"
+    """
     self.adj_list[u][v] = c
     self.adj_list[v][u] = c
     return self
     
-  def cost(self, u, v):
-    """
-      Return the cost of the edge (u, v); or None if the edge does not exist
-    """
-    if u in self.adj_list and v in self.adj_list[u]:
-      return self.adj_list[u][v]
-    else:
-      return None
-  
   def has_edge(self, u, v):
     """
       Test whether the edge (u,v) exists in the graph
     """
-    return self.cost(u, v) is not None
+    return u in self.adj_list and v in self.adj_list[u]
+
+  def cost(self, u, v):
+    """
+      Return the cost of the edge (u, v); or None if the edge does not exist
+    """
+    if self.has_edge(u, v):
+      return self.adj_list[u][v]
+    else:
+      return None
   
   def nodes(self):
     """
@@ -52,36 +52,37 @@ def Prim(graph):
     Returns the minimum spanning tree of the input graph; the tree
     is represented as a "parent-of" dictionary.
     
-    The border, also represented as a dictionary, always maps a node *outside*
-    of the current spanning tree to its nearest node *inside* of the tree.
+    The nearest edges, also represented using a dictionary, always maps a node
+    *outside* of the current spanning tree to its nearest node *inside* of the
+    tree with a non-infinite cost.
   """
   span_tree = { }
-  border = { }
+  nearest = { }
   nodes = graph.nodes()
   y = nodes.pop()
   for x in nodes:
     if graph.has_edge(x, y):
-      border[x] = y
-  while border:
-    # find edge at border with minimum cost
+      nearest[x] = y
+  while nearest:
+    # find new edge with minimum cost
     u, v, c = None, None, None
-    for x, y in border.items():
+    for x, y in nearest.items():
       cost_xy = graph.cost(x,y)
       if c is None or cost_xy < c:
         u, v, c = x, y, cost_xy
-    # remove from border and add to spanning tree
-    del border[u]
+    # remove from near edges and add to spanning tree
+    del nearest[u]
     span_tree[u] = v
     nodes.remove(u)
-    # add new edge at border if nearer to u
+    # update nearest edges to u
     for x in nodes:
       if graph.has_edge(x,u):
-        if x in border:
-          w = border[x]
+        if x in nearest:
+          w = nearest[x]
           if graph.cost(x,u) < graph.cost(x,w):
-            border[x] = u
+            nearest[x] = u
         else:
-          border[x] = u
+          nearest[x] = u
   return span_tree
 
 g1 = Graph()
