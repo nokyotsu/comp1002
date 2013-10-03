@@ -6,7 +6,7 @@ class Graph:
   
   def add_edge(self, u, v, c):
     """
-      Add an undirected edge between `u` and `v` with cost `c`
+    Add an undirected edge between `u` and `v` with cost `c`
     """
     self.adj_list[u][v] = c
     self.adj_list[v][u] = c
@@ -14,13 +14,13 @@ class Graph:
     
   def has_edge(self, u, v):
     """
-      Test whether the edge (u,v) exists in the graph
+    Test whether the edge (u,v) exists in the graph
     """
     return u in self.adj_list and v in self.adj_list[u]
 
   def cost(self, u, v):
     """
-      Return the cost of the edge (u, v); or None if the edge does not exist
+    Return the cost of the edge (u, v); or None if the edge does not exist
     """
     if self.has_edge(u, v):
       return self.adj_list[u][v]
@@ -29,13 +29,13 @@ class Graph:
   
   def nodes(self):
     """
-      Return a list of the nodes in the graph
+    Return a list of the nodes in the graph
     """
     return list(self.adj_list.keys())
     
   def adjacent(self, u):
     """
-      Return a list of the nodes adjacent to the node `u`
+    Return a list of the nodes adjacent to the node `u`
     """
     return list(self.adj_list[u].keys())
   
@@ -49,12 +49,14 @@ class Graph:
 
 def Prim(graph):
   """
-    Returns the minimum spanning tree of the input graph; the tree
-    is represented as a "parent-of" dictionary.
+  Returns the minimum spanning tree of the input graph; the tree
+  is represented as a "parent-of" dictionary.
     
-    The nearest edges, also represented using a dictionary, always maps a node
-    *outside* of the current spanning tree to its nearest node *inside* of the
-    tree with a non-infinite cost.
+  The `nearest` edges, also represented using a dictionary, always maps a
+  node *outside* of the current spanning tree to its nearest node *inside*
+  of the tree (and only if it has a non-infinite cost).
+    
+  The list of `nodes` are those in the graph, but not already in the tree.
   """
   span_tree = { }
   nearest = { }
