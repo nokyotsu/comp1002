@@ -45,11 +45,11 @@ print(points[0][1]) # => 3
 points[2] = [7, 5]
 points[2][0] = 4
 
-# quickly create empty arrays and matrices
+# create empty arrays and matrices
 a = [0] * 5
 print(a) # => [0, 0, 0, 0, 0]
 
-m = [[0] * 3] * 4
+m = [[0 for x in range(3)] for x in range(4)]
 print(m)
 # => [[0, 0, 0],
 #     [0, 0, 0],
